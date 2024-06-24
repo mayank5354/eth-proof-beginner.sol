@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.18;
+pragma solidity ^0.8.0;
 
 contract MyToken {
     // Public variables
@@ -17,7 +17,7 @@ contract MyToken {
         totalSupply = _initialSupply;
         balances[msg.sender] = _initialSupply; // Assign initial supply to contract deployer
     }
-}
+
     // Mint function
     function mint(address _to, uint256 _value) public {
         totalSupply += _value; // Increase total supply
@@ -30,3 +30,13 @@ contract MyToken {
         totalSupply -= _value; // Decrease total supply
         balances[_from] -= _value; // Decrease balance of the sender
     }
+
+    /**
+     * @dev @custom:dev-run-script
+     */
+    function devRunScript() public {
+        // Add any custom script logic here
+        // This function will be executed when you set a dev run script in Remix
+        // For example, you could call mint and burn functions here for testing purposes
+    }
+}
