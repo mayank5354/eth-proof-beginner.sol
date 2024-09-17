@@ -1,3 +1,31 @@
+# MyToken Smart Contract
+
+## Description
+MyToken is a basic ERC-20-like token contract with functionality for minting and burning tokens. It allows users to create new tokens (mint), destroy existing tokens (burn), and check the total supply and individual balances.
+
+## Features
+- **Minting:** Add new tokens to a specified address.
+- **Burning:** Remove tokens from a specified address.
+- **Initial Setup:** Set up the token with an initial supply, name, and symbol.
+
+## Installation
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/mayank5354/eth-proof-beginner.sol.git
+
+- **Minting Example:**
+  Minted 100 tokens to address 0xABC...
+
+- **Burning Example:**
+  Burned 50 tokens from address 0xABC...
+
+- **Total Supply Check:**
+  Total supply: 1050 tokens
+
+- **Balance Check:**
+  Balance of address 0xABC...: 100 tokens
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
