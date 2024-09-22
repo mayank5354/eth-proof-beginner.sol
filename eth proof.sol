@@ -1,42 +1,41 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.18;
+
+/*
+       REQUIREMENTS
+    1. Your contract will have public variables that store the details about your coin (Token Name, Token Abbrv., Total Supply)
+    2. Your contract will have a mapping of addresses to balances (address => uint)
+    3. You will have a mint function that takes two parameters: an address and a value. 
+       The function then increases the total supply by that number and increases the balance 
+       of the “sender” address by that amount
+    4. Your contract will have a burn function, which works the opposite of the mint function, as it will destroy tokens. 
+       It will take an address and value just like the mint functions. It will then deduct the value from the total supply 
+       and from the balance of the “sender”.
+    5. Lastly, your burn function should have conditionals to make sure the balance of "sender" is greater than or equal 
+       to the amount that is supposed to be burned.
+*/
 
 contract MyToken {
-    // Public variables
-    string public name;
-    string public symbol;
-    uint256 public totalSupply;
 
-    // Mapping of addresses to balances
-    mapping(address => uint256) public balances;
+    // public variables here
+    string public tokenName = "Stoic Musashi";
+    string public tokenAbbreveation = "STM";
+    uint public totalSupplyInNetwork = 0; // intial supply would be zero
 
-    // Constructor to initialize the token details
-    constructor(string memory _name, string memory _symbol, uint256 _initialSupply) {
-        name = _name;
-        symbol = _symbol;
-        totalSupply = _initialSupply;
-        balances[msg.sender] = _initialSupply; // Assign initial supply to contract deployer
-    }
 
-    // Mint function
-    function mint(address _to, uint256 _value) public {
-        totalSupply += _value; // Increase total supply
-        balances[_to] += _value; // Increase balance of the recipient
-    }
+    // mapping variable here
+   mapping (address => uint) public balances;
 
-    // Burn function
-    function burn(address _from, uint256 _value) public {
-        require(balances[_from] >= _value, "Insufficient balance"); // Check if the sender has enough balance
-        totalSupply -= _value; // Decrease total supply
-        balances[_from] -= _value; // Decrease balance of the sender
-    }
-
-    /**
-     * @dev @custom:dev-run-script
-     */
-    function devRunScript() public {
-        // Add any custom script logic here
-        // This function will be executed when you set a dev run script in Remix
-        // For example, you could call mint and burn functions here for testing purposes
-    }
+    // mint function
+   function mintToken(address _userAddress, uint _amount) public {
+      totalSupplyInNetwork = totalSupplyInNetwork + _amount;
+      balances[_userAddress] = balances[_userAddress] + _amount;
+   }
+    // burn function
+   function burnToken(address _userAddress, uint _amount) public {
+      if(_amount <= balances[_userAddress]){
+      totalSupplyInNetwork = totalSupplyInNetwork - _amount;
+      balances[_userAddress] = balances[_userAddress] - _amount;
+      }
+   }
 }
