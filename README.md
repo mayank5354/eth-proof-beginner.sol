@@ -1,70 +1,80 @@
-# MyToken Smart Contract
+Token Solidity Contract
 
-## Description
-MyToken is a basic ERC-20-like token contract with functionality for minting and burning tokens. It allows users to create new tokens (mint), destroy existing tokens (burn), and check the total supply and individual balances.
+Watch the Video Tutorial
+https://www.loom.com/share/ea6ab513d418443a803326a78d36f8a2?sid=582086a1-a99b-404b-b230-c34b72c30f4a
 
-## Features
-- **Minting:** Add new tokens to a specified address.
-- **Burning:** Remove tokens from a specified address.
-- **Initial Setup:** Set up the token with an initial supply, name, and symbol.
+This Solidity program defines a simple ERC20-like token contract with minting and burning functionalities. The contract allows for the creation and destruction of tokens, and maintains a balance mapping for token holders.
 
-## Installation
+Description
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/mayank5354/eth-proof-beginner.sol.git
+The MyToken contract implements basic functionalities to handle a custom token on the Ethereum blockchain. It includes:
 
-- **Minting Example:**
-  Minted 100 tokens to address 0xABC...
+Public variables to store the token's details (name, abbreviation, and total supply).
+A mapping to keep track of each address's balance.
+A mintToken function to create new tokens and add them to a specified address.
+A burnToken function to destroy tokens from a specified address, ensuring the address has enough balance to burn the tokens.
+This contract serves as a simple introduction to creating and managing custom tokens using Solidity.
 
-- **Burning Example:**
-  Burned 50 tokens from address 0xABC...
+Getting Started
 
-- **Total Supply Check:**
-  Total supply: 1050 tokens
+Executing Program
 
-- **Balance Check:**
-  Balance of address 0xABC...: 100 tokens
+To run this program, you can use Remix, an online Solidity IDE. Follow these steps:
+
+Go to the Remix website at Remix.
+
+Create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., MyToken.sol).
+
+Copy and paste the following code into the file:
 
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.18;
 
 contract MyToken {
-    // Public variables
-    string public name;
-    string public symbol;
-    uint256 public totalSupply;
 
-    // Mapping of addresses to balances
-    mapping(address => uint256) public balances;
+    // public variables here
+    string public tokenName = "Stoic Musashi";
+    string public tokenAbbreveation = "STM";
+    uint public totalSupplyInNetwork = 0;
 
-    // Constructor to initialize the token details
-    constructor(string memory _name, string memory _symbol, uint256 _initialSupply) {
-        name = _name;
-        symbol = _symbol;
-        totalSupply = _initialSupply;
-        balances[msg.sender] = _initialSupply; // Assign initial supply to contract deployer
+    // mapping variable here
+    mapping (address => uint) public balances;
+
+    // mint function
+    function mintToken(address _userAddress, uint _amount) public {
+        totalSupplyInNetwork += _amount;
+        balances[_userAddress] += _amount;
     }
 
-    // Mint function
-    function mint(address _to, uint256 _value) public {
-        totalSupply += _value; // Increase total supply
-        balances[_to] += _value; // Increase balance of the recipient
-    }
-
-    // Burn function
-    function burn(address _from, uint256 _value) public {
-        require(balances[_from] >= _value, "Insufficient balance"); // Check if the sender has enough balance
-        totalSupply -= _value; // Decrease total supply
-        balances[_from] -= _value; // Decrease balance of the sender
-    }
-
-    /**
-     * @dev @custom:dev-run-script
-     */
-    function devRunScript() public {
-        // Add any custom script logic here
-        // This function will be executed when you set a dev run script in Remix
-        // For example, you could call mint and burn functions here for testing purposes
+    // burn function
+    function burnToken(address _userAddress, uint _amount) public {
+        if (_amount <= balances[_userAddress]) {
+            totalSupplyInNetwork -= _amount;
+            balances[_userAddress] -= _amount;
+        }
     }
 }
+To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.18" (or another compatible version), and then click on the "Compile MyToken.sol" button.
+
+Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the MyToken contract from the dropdown menu, and then click on the "Deploy" button.
+
+Once the contract is deployed, you can interact with it by calling the mintToken and burnToken functions. Use the interface provided by Remix to input the necessary parameters and execute the functions.
+
+Help
+
+If you encounter any issues, ensure the following:
+
+The Solidity compiler version is set correctly.
+The address used in function calls is valid.
+The balance of the address is sufficient for burning tokens.
+For additional help, use the Remix documentation or community forums.
+
+Authors
+
+MetaCrafter mayank5354
+Mayank@5354
+
+License
+
+This project is licensed under the MIT License.# MyToken Smart Contract
+
