@@ -1,6 +1,6 @@
 # Stoic Musashi Token Solidity Contract
 
-[Watch the Video Tutorial](https://www.loom.com/share/7911772a5ca14c41bb28f8e3713e83db?sid=e957f7c2-627a-4a3f-97f1-55fa8b04eb2b)
+[Watch the Video Tutorial](https://www.loom.com/share/31bcf682563048469e913484138b2a69?sid=b7ad3ff5-308e-4a5c-bdfe-8621bd79bdad)
 
 This Solidity program defines a simple ERC20-like token contract with minting and burning functionalities. The contract allows for the creation and destruction of tokens, and maintains a balance mapping for token holders.
 
@@ -71,7 +71,7 @@ For additional help, use the Remix documentation or community forums.
 
 ## Authors
 
-MetaCrafter Mayank Sharma
+MetaCrafter Mayank@5354
 
 ## License
 
